@@ -1,0 +1,64 @@
+# Site settings
+title: Monitli Blog
+email: support@monitli.com
+description: >-
+  A modern, responsive blog built with Jekyll and the FlexStart theme. 
+  Share your thoughts, ideas, and stories with the world.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: your-github-username
+repository: your-github-username/flexstart-blog
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+# Sass settings
+sass:
+  sass_dir: assets/scss
+  style: compressed
+
+# Collections
+collections:
+  authors:
+    output: true
+
+# Default settings
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination
+paginate: 6
+paginate_path: "/page:num/"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache/
+  - .jekyll-cache/
+  - .github/

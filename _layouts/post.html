@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Blog Details Section -->
+            <section id="blog-details" class="blog-details section">
+                <div class="container">
+                    <article class="article">
+                        {% if page.image %}
+                        <div class="post-img">
+                            <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="img-fluid">
+                        </div>
+                        {% endif %}
+
+                        <h2 class="title">{{ page.title }}</h2>
+
+                        <div class="meta-top">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <span href="{{ '/authors/' | append: page.author | relative_url }}">{{ page.author | default: "Admin" }}</span></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <span href="#"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time></span></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <span href="#blog-comments">{{ page.comments | size | default: 0 }} Comments</span></li>
+                            </ul>
+                        </div><!-- End meta top -->
+
+                        <div class="content">
+                            {{ content }}
+                        </div><!-- End post content -->
+
+                        <div class="meta-bottom">
+                            {% if page.categories %}
+                            <i class="bi bi-folder"></i>
+                            <ul class="cats">
+                                {% for category in page.categories %}
+                                <li>{{ category }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+
+                            {% if page.tags %}
+                            <i class="bi bi-tags"></i>
+                            <ul class="tags">
+                                {% for tag in page.tags %}
+                                <li>{{ tag }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div><!-- End meta bottom -->
+
+                    </article>
+
+                </div>
+            </section><!-- /Blog Details Section -->
+
+            <!-- Blog Author Section -->
+            <section id="blog-author" class="blog-author section">
+                <div class="container">
+                    <div class="author-container d-flex align-items-center">
+                        <img src="{{ '/assets/img/blog/tszymala.png' | relative_url }}" class="rounded-circle flex-shrink-0" alt="">
+                        <div>
+                            <h4>{{ page.author | default: "Admin" }}</h4>
+                            <div class="social-links">
+                                <a href="{{ page.instagram }}">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="{{ page.linkedin }}">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                            </div>
+                            <p>
+                                {{ page.bio | default: "Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas." }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- /Blog Author Section -->
+
+
+        </div>
+    </div>
+</div>

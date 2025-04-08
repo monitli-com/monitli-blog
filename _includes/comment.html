@@ -1,0 +1,31 @@
+<div id="comment-{{ comment._id }}" class="comment">
+    <div class="d-flex">
+        <div class="comment-img"><img src="https://www.gravatar.com/avatar/{{ comment.email | default: '' | downcase | md5 }}?s=60&d=mp" alt="{{ comment.name }}"></div>
+        <div>
+            <h5>
+                <a href="{% if comment.website %}{{ comment.website }}{% else %}#{% endif %}">{{ comment.name }}</a>
+                <a href="#comment-form" onclick="setReplyTo('{{ comment._id }}', '{{ comment.name }}')" class="reply"><i class="bi bi-reply-fill"></i> Reply</a>
+            </h5>
+            <time datetime="{{ comment.date | date_to_xmlschema }}">{{ comment.date | date: "%b %-d, %Y" }}</time>
+            <p>{{ comment.message }}</p>
+        </div>
+    </div>
+
+    {% if comment.replies %}
+    {% for reply in comment.replies %}
+    <div id="comment-reply-{{ reply._id }}" class="comment comment-reply">
+        <div class="d-flex">
+            <div class="comment-img"><img src="https://www.gravatar.com/avatar/{{ reply.email | default: '' | downcase | md5 }}?s=60&d=mp" alt="{{ reply.name }}"></div>
+            <div>
+                <h5>
+                    <a href="{% if reply.website %}{{ reply.website }}{% else %}#{% endif %}">{{ reply.name }}</a>
+                    <a href="#comment-form" onclick="setReplyTo('{{ comment._id }}', '{{ reply.name }}')" class="reply"><i class="bi bi-reply-fill"></i> Reply</a>
+                </h5>
+                <time datetime="{{ reply.date | date_to_xmlschema }}">{{ reply.date | date: "%b %-d, %Y" }}</time>
+                <p>{{ reply.message }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
